@@ -33,7 +33,8 @@ INSTALLER_TARGET="LocalSystem"
 
 syslog -s -l error "MSOFFICE2016 - Starting Download/Install sequence."
 
-for downloadUrl in "${DOWNLOAD_URLS[@]}"; do
+for downloadUrl in "${DOWNLOAD_URLS[@]}"
+do
   finalDownloadUrl=$(curl "$downloadUrl" -s -L -I -o /dev/null -w '%{url_effective}')
   pkgName=$(printf "%s" "${finalDownloadUrl[@]}" | sed 's@.*/@@')
   pkgPath="/tmp/$pkgName"
